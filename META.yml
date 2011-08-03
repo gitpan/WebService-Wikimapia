@@ -20,7 +20,7 @@ name: WebService-Wikimapia
 provides:
   WebService::Wikimapia:
     file: lib/WebService/Wikimapia.pm
-    version: 0.01
+    version: 0.02
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02

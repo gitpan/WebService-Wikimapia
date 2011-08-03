@@ -17,11 +17,11 @@ WebService::Wikimapia - Interface to Wikimapia API.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 Readonly my $BASE_URL => 'http://api.wikimapia.org/';
 Readonly my $DISABLE  => { 'location' => 1, 'polygon' => 1 };
 Readonly my $FORMAT   => { 'xml'  => 1, 'json' => 1, jsonp => 1, 'kml'=> 1, 'binary' => 1 };
@@ -63,8 +63,8 @@ Readonly my $LANGUAGE =>
 
 =head1 DESCRIPTION
 
-Wikimapia API is a system that allows you to receive data from our maps and that can easily be 
-integrate Wikimapia Geo Data into your external application or web site. And it's all free.You
+Wikimapia API is a system that allows you to receive data from Wikimapia map & that can easily
+be integrate Wikimapia Geo Data into your external application/web site. And it's all free.You
 need to get the API Key first from here: http://wikimapia.org/api?action=create_key
 Please note API is still in developing stage (beta).
 
@@ -80,7 +80,7 @@ The only key required is 'key' which is an api key. Rest of them are optional.
     |          | for xml, json(p) formats. Allowed fields to disable: location, polygon.     |
     | page     | This is page number. 1 is default.                                          |
     | count    | Determines the number of results/page. 50 is default.                       | 
-    | language | Language in ISO 639-1 format. Default is 'en'.                                              |
+    | language | Language in ISO 639-1 format. Default is 'en'.                              |
     | format   | Output format. Choices: xml(default),kml,json,jsonp and binary.             |
     | pack     | Pack output data in zipped format. Available values: none (default), gzip.  |
     +----------+-----------------------------------------------------------------------------+
@@ -128,7 +128,7 @@ The only key required is 'key' which is an api key. Rest of them are optional.
     | Breton                |       br       |
     | Bulgarian             |       bg       |
     | Burmese               |       my       |
-    | Catalan;              |       ca       |
+    | Catalan               |       ca       |
     | Chamorro              |       ch       |
     | Chechen               |       ce       |
     | Chichewa              |       ny       |
@@ -251,7 +251,7 @@ The only key required is 'key' which is an api key. Rest of them are optional.
     | Slovene               |       sl       |
     | Somali                |       af       |
     | Southern Sotho        |       st       |
-    | Spanish;              |       es       |
+    | Spanish               |       es       |
     | Sundanese             |       su       |
     | Swahili               |       sw       |
     | Swati                 |       ss       |
@@ -349,6 +349,7 @@ sub search
     my $url = sprintf("%s?function=search&q=%s&lat=%s&lon=%s", 
         $BASE_URL, $param{q}, $param{lat}, $param{lon});
     $url.= sprintf("&key=%s", $self->key);
+    $url = $self->_addOptionalParams($url);
     return $self->_process($url);                  
 }
 
@@ -441,10 +442,10 @@ sub box
 
     croak("ERROR: Missing boundary box coordinates.\n")
         unless (!exists($param{bbox})
-            &&
-            ((exists($param{'lon_min'}) || exists($param{'lat_min'}) || exists($param{'lon_max'}) || exists($param{'lat_max'}))
-             ||
-             (exists($param{'x'}) || exists($param{'y'}) || exists($param{'z'}))));
+                &&
+                ((exists($param{'lon_min'}) || exists($param{'lat_min'}) || exists($param{'lon_max'}) || exists($param{'lat_max'}))
+                 ||
+                 (exists($param{'x'}) || exists($param{'y'}) || exists($param{'z'}))));
         
     my ($url);
     $url = sprintf("%s?function=box&bbox=%s", $BASE_URL, $param{'bbox'}) 
@@ -458,6 +459,7 @@ sub box
         if (!defined($param{'bbox'}) && (exists($param{'x'}) || exists($param{'y'}) || exists($param{'z'})));
         
     $url.= sprintf("&key=%s", $self->key);
+    $url = $self->_addOptionalParams($url);
     return $self->_process($url);    
 }
 
@@ -489,6 +491,7 @@ sub object
     
     my $url = sprintf("%s?function=object&id=%s", $BASE_URL, $id);
     $url.= sprintf("&key=%s", $self->key);
+    $url = $self->_addOptionalParams($url);
     return $self->_process($url);      
 }
 
@@ -507,6 +510,21 @@ sub _process
     $content  = $response->content;
     croak("ERROR: No data found.\n") unless defined $content;
     return $content;
+}
+
+sub _addOptionalParams
+{
+    my $self = shift;
+    my $url  = shift;
+    
+    $url .= sprintf("&disable=%s",  $self->disable) if $self->disable;
+    $url .= sprintf("&page=%s",     $self->page);
+    $url .= sprintf("&count=%s",    $self->count);
+    $url .= sprintf("&language=%s", $self->language);
+    $url .= sprintf("&format=%s",   $self->format);
+    $url .= sprintf("&pack=%s",     $self->pack);
+    
+    return $url;
 }
 
 sub _validateBBox
