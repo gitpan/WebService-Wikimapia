@@ -1,5 +1,9 @@
 Revision history for WebService-Wikimapia
 
+0.03    Mon Aug 08 13:29:11 2011
+        - Made Readonly v1.03 as minimum requirement.
+        - Prepared the distribution using the Module::Signature v0.68.
+
 0.02    Wed Aug 03 10:03:01 2011
         - Added optional parameters handler.
 

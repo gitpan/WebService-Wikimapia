@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.66.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,14 +14,14 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 5c30053b0d5fb8ff349198fa91ca9167367e94c5 Build.PL
-SHA1 66bd9283c04cd0c365b5248ba19e87d8e4ee6f9b Changes
+SHA1 78b1747e1ee295d9616918637d906368ac919e74 Build.PL
+SHA1 2420d86bde52e9d415ab3e701aa6d24d2d6fdef2 Changes
 SHA1 98d1f517094a82f9b3b5bd6842ab55c5b42631c1 MANIFEST
 SHA1 7d20e4e840781030202bb045d5ab81b3fd1b68b0 MANIFEST.SKIP
-SHA1 d87af3132ca2d9ed483656ab2443e84714b31051 META.yml
-SHA1 e2779ab6040b495f66fba359fb1e5637b7df8aff Makefile.PL
+SHA1 71cbe7905ebd92717819206458d8c3e441452750 META.yml
+SHA1 bf1cca072a991266f0d448f5f2ef251173887d04 Makefile.PL
 SHA1 d798e6ba22a3f3a3bb2d3ca7ff0fa4768f7e5908 README
-SHA1 aa928dfb753fb35f954320ea9932fd997f8f62b7 lib/WebService/Wikimapia.pm
+SHA1 ade1dfed2d355181e3d0b0c2543604f19708479d lib/WebService/Wikimapia.pm
 SHA1 8c021c9ef479938493f4efcdbe7e23b33aeee0a8 t/00-load.t
 SHA1 47969cd77f13af777a41ee1206674dde04948d67 t/01-new.t
 SHA1 24a1460b125a056670004e6abe420e38285ecec9 t/02-search.t
@@ -32,11 +32,11 @@ SHA1 0765c9ff0cc4319f415bb08d0053b7717a8284a2 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.14 (MingW32)
 
-iQEcBAEBAgAGBQJOOQ/jAAoJEPYcXBXhRYOhl8oH/3eftwX9MEvEhggXlHzg0Sgw
-UbN4qUvkgOBioewzZvq1ka1rVnCUXU8FxvWOuuAzKfjQJxubzvmmrl8/c3I4QBzS
-OGd/etCs+Z1vCSjMp4rFrHOkiWBILnM4Z6KAh68HykIovHXjKa5IH0DuvCEMohf6
-56DLp+FRMwNdrHdFo0PpFz0kYHb3/JMvkLhe5wG0t9r8WwE3PbT5/paNRYtHcKmL
-BzUt77ZglivwH+T3GRKqsmYQBw1FX4KPF1eyjSxtu0Gar3hFTuc/GlpsDpx4kdJv
-aFm+kg29F67wuPXwN7GfIJCqltPRAB+gKLX9Cw6TLH//SNokWjOrF96HRG/J6bQ=
-=D18c
+iQEcBAEBAgAGBQJOP9bOAAoJEPYcXBXhRYOhOqgIAJbFxb1N/5KmEbKw/J4fbKah
+Jhs6WYCdZKlnZ3Agg9B2plptCTAjpD1oT7HWpYRvOoN6vwbjrxO72qE5ucv23ook
+3LRzWqAf+xG+MYgVZxIwlHJCO8EWa/JVm41PsvElMLopJl+JJMhDnWcVIuK76hV8
+A2JK3q5xOqQm/xur9M7RTREe4bWN5/jxrYKxcxDFu3Qn+p0/cG38fB7KarRSYdQR
+/grGx+UqIOewZPcvtjb+daQvxHGhGnUPclunuNouClEC8NJnwdkyeslwdi5DAEeb
+Pj4OAq3XxNadlK9vC2s/4QyGpfKrNj3TjuPwXJVUOr0GK/6cp6LTzVSrePaOaU8=
+=2x08
 -----END PGP SIGNATURE-----

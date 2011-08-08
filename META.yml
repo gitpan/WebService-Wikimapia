@@ -7,7 +7,7 @@ build_requires:
   LWP::UserAgent: 2.33
   Mouse: 0.93
   MouseX::Params::Validate: 0.01
-  Readonly: 0
+  Readonly: 1.03
   Test::More: 0
 configure_requires:
   Module::Build: 0.36
@@ -20,7 +20,7 @@ name: WebService-Wikimapia
 provides:
   WebService::Wikimapia:
     file: lib/WebService/Wikimapia.pm
-    version: 0.02
+    version: 0.03
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03

@@ -17,11 +17,11 @@ WebService::Wikimapia - Interface to Wikimapia API.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 Readonly my $BASE_URL => 'http://api.wikimapia.org/';
 Readonly my $DISABLE  => { 'location' => 1, 'polygon' => 1 };
 Readonly my $FORMAT   => { 'xml'  => 1, 'json' => 1, jsonp => 1, 'kml'=> 1, 'binary' => 1 };
