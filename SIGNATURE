@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.68.
+signed via the Module::Signature module, version 0.73.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,29 +14,27 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 78b1747e1ee295d9616918637d906368ac919e74 Build.PL
-SHA1 2420d86bde52e9d415ab3e701aa6d24d2d6fdef2 Changes
-SHA1 98d1f517094a82f9b3b5bd6842ab55c5b42631c1 MANIFEST
-SHA1 7d20e4e840781030202bb045d5ab81b3fd1b68b0 MANIFEST.SKIP
-SHA1 71cbe7905ebd92717819206458d8c3e441452750 META.yml
+SHA1 118d41c3c82f21de6f3a39a94be0024d6bdee580 Changes
+SHA1 d7ec6af4035560434f07513dff7bde81257d7449 MANIFEST
+SHA1 5f29cdcbfacb9c46ac155fff9844aceeb064aef1 MANIFEST.SKIP
 SHA1 bf1cca072a991266f0d448f5f2ef251173887d04 Makefile.PL
 SHA1 d798e6ba22a3f3a3bb2d3ca7ff0fa4768f7e5908 README
-SHA1 ade1dfed2d355181e3d0b0c2543604f19708479d lib/WebService/Wikimapia.pm
+SHA1 3edcb2e1af9d854509cf481dd5c5964ace349719 lib/WebService/Wikimapia.pm
 SHA1 8c021c9ef479938493f4efcdbe7e23b33aeee0a8 t/00-load.t
 SHA1 47969cd77f13af777a41ee1206674dde04948d67 t/01-new.t
-SHA1 24a1460b125a056670004e6abe420e38285ecec9 t/02-search.t
-SHA1 bba59dc1b27e35a0e78ef9ed15f1d35ca36791ba t/03-box.t
-SHA1 c79741567fb6ca11724e0a428f41410c689cd0e2 t/04-object.t
+SHA1 b508effd9cf772cc875618adf01cbf70bdac94cb t/02-search.t
+SHA1 80b35a050598d926075fab52a41906a2f540385e t/03-box.t
+SHA1 d5703eeb6694120364ddea92e788851af7679f4c t/04-object.t
 SHA1 2b8ffb7e4f399af95d092743846ac8d438f2c53e t/manifest.t
 SHA1 0765c9ff0cc4319f415bb08d0053b7717a8284a2 t/pod.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.14 (MingW32)
+Version: GnuPG v1
 
-iQEcBAEBAgAGBQJOP9bOAAoJEPYcXBXhRYOhOqgIAJbFxb1N/5KmEbKw/J4fbKah
-Jhs6WYCdZKlnZ3Agg9B2plptCTAjpD1oT7HWpYRvOoN6vwbjrxO72qE5ucv23ook
-3LRzWqAf+xG+MYgVZxIwlHJCO8EWa/JVm41PsvElMLopJl+JJMhDnWcVIuK76hV8
-A2JK3q5xOqQm/xur9M7RTREe4bWN5/jxrYKxcxDFu3Qn+p0/cG38fB7KarRSYdQR
-/grGx+UqIOewZPcvtjb+daQvxHGhGnUPclunuNouClEC8NJnwdkyeslwdi5DAEeb
-Pj4OAq3XxNadlK9vC2s/4QyGpfKrNj3TjuPwXJVUOr0GK/6cp6LTzVSrePaOaU8=
-=2x08
+iQEcBAEBAgAGBQJULynEAAoJENoXJXWo7C/pyG0H/jq83O4BBUrI/oyAIwtkhcAC
+k53kQxcemDRlYFnQYbMlx0ctaoPsBL1fYvuJNSnMs6S25uu+ybj2Imefz2rAnp1C
+PWgYtGEepReufbDKHQbvUtd9O2iiGv/mHrHnsAnTKtoht7bA1mh2vPiodNZ+Jq42
+QnT+Mn92mcrzltKk0QefmBrV+SrnfGX5MvVKDhq+bbzJDiaLk5QBdkzKvA/sjQUv
+hvSw1o2kFkRVSHiuk3T1lq7LE7LTRjE7QHiNL8TTqJ1dhrkta95c0J0a1+ayX4lZ
+dcsC64ZGVVY/t4gwNE9/o6pT+C0hn8IvM1x74bBWaJ8NFTXRt4oBhySSD/x4RhA=
+=IRBv
 -----END PGP SIGNATURE-----

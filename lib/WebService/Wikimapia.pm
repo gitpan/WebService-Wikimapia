@@ -17,11 +17,11 @@ WebService::Wikimapia - Interface to Wikimapia API.
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 Readonly my $BASE_URL => 'http://api.wikimapia.org/';
 Readonly my $DISABLE  => { 'location' => 1, 'polygon' => 1 };
 Readonly my $FORMAT   => { 'xml'  => 1, 'json' => 1, jsonp => 1, 'kml'=> 1, 'binary' => 1 };
@@ -76,10 +76,10 @@ The only key required is 'key' which is an api key. Rest of them are optional.
     | Key      | Description                                                                 |
     +----------+-----------------------------------------------------------------------------+
     | key      | Wikimapia API Key.                                                          |
-    | disable  | Option to disable the output of various parameters. You can disable fields  | 
+    | disable  | Option to disable the output of various parameters. You can disable fields  |
     |          | for xml, json(p) formats. Allowed fields to disable: location, polygon.     |
     | page     | This is page number. 1 is default.                                          |
-    | count    | Determines the number of results/page. 50 is default.                       | 
+    | count    | Determines the number of results/page. 50 is default.                       |
     | language | Language in ISO 639-1 format. Default is 'en'.                              |
     | format   | Output format. Choices: xml(default),kml,json,jsonp and binary.             |
     | pack     | Pack output data in zipped format. Available values: none (default), gzip.  |
@@ -91,7 +91,7 @@ The only key required is 'key' which is an api key. Rest of them are optional.
     my ($key, $wiki);
     $key  = 'Your_API_Key';
     $wiki = WebService::Wikimapia->new(key => $key);
-    
+
     #or
     $wiki = WebService::Wikimapia->new(key => $key, format => 'json');
 
@@ -287,7 +287,7 @@ The only key required is 'key' which is an api key. Rest of them are optional.
     | Yoruba                |       yo       |
     | Zhuang                |       za       |
     | Zulu                  |       zu       |
-    +-----------------------+----------------+    
+    +-----------------------+----------------+
 
 =cut
 
@@ -321,9 +321,9 @@ has  'browser'  => (is => 'rw', isa => 'LWP::UserAgent', default => sub { return
 Returns search results of a given query.
 
     +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         | 
+    | Key     | Description                                                         |
     +---------+---------------------------------------------------------------------+
-    | q       | Query to search in wikimapia (UTF-8).                               | 
+    | q       | Query to search in wikimapia (UTF-8).                               |
     | lat     | Coordinates of the "search point" lat means latitude.               |
     | lon     | Coordinates of the "search point" lon means longitude.              |
     +---------+---------------------------------------------------------------------+
@@ -345,12 +345,12 @@ sub search
                 'lat'  => { isa => 'Coordinate' },
                 'lon'  => { isa => 'Coordinate' },
                 MX_PARAMS_VALIDATE_NO_CACHE => 1);
-                
-    my $url = sprintf("%s?function=search&q=%s&lat=%s&lon=%s", 
+
+    my $url = sprintf("%s?function=search&q=%s&lat=%s&lon=%s",
         $BASE_URL, $param{q}, $param{lat}, $param{lon});
     $url.= sprintf("&key=%s", $self->key);
     $url = $self->_addOptionalParams($url);
-    return $self->_process($url);                  
+    return $self->_process($url);
 }
 
 =head2 box()
@@ -358,29 +358,29 @@ sub search
 Returns object in the given boundary box.
 
     +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         | 
+    | Key     | Description                                                         |
     +---------+---------------------------------------------------------------------+
     | bbox    | Coordinates of the selected box [lon_min,lat_min,lon_max,lat_max].  |
     +---------+---------------------------------------------------------------------+
-    
+
     OR
-    
+
     +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         | 
+    | Key     | Description                                                         |
     +---------+---------------------------------------------------------------------+
-    | lon_min | Longiture Min.                                                      | 
-    | lat_min | Latitude Min.                                                       |                        
+    | lon_min | Longiture Min.                                                      |
+    | lat_min | Latitude Min.                                                       |
     | lon_max | Longitude Max.                                                      |
     | lat_max | Latitude Max.                                                       |
     +---------+---------------------------------------------------------------------+
-    
+
     OR
-    
+
     +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         | 
+    | Key     | Description                                                         |
     +---------+---------------------------------------------------------------------+
     | x       | Tile's x co-ordinate.                                               |
-    | y       | Tile's y co-ordinate.                                               |  
+    | y       | Tile's y co-ordinate.                                               |
     | z       | Tile's z co-ordinate.                                               |
     +---------+---------------------------------------------------------------------+
 
@@ -389,15 +389,15 @@ Returns object in the given boundary box.
 
     my $key  = 'Your_API_Key';
     my $wiki = WebService::Wikimapia->new(key => $key);
-    
+
     print $wiki->box(bbox => '37.617188,55.677586,37.70507,55.7271128');
-    
+
     #or
     print $wiki->box(lon_min => 37.617188,
                      lat_min => 55.677586,
                      lon_max => 37.70507,
                      lat_max => 55.7271128);
-    
+
     #or
     print $wiki->box(x =>687, y => 328, z => 10);
 
@@ -419,23 +419,23 @@ sub box
                 'y'       => { isa => 'Coordinate', optional => 1 },
                 'z'       => { isa => 'Coordinate', optional => 1 },
                 MX_PARAMS_VALIDATE_NO_CACHE => 1);
-                
+
     croak("ERROR: Missing lon_min/lat_min/lon_max/lat_max coordinates.\n")
-        if (!exists($param{bbox}) 
-            && 
+        if (!exists($param{bbox})
+            &&
             ((exists($param{'lon_min'}) && !(exists($param{'lat_min'}) || exists($param{'lon_max'}) || exists($param{'lat_max'})))
-             || 
+             ||
              (exists($param{'lat_min'}) && !(exists($param{'lon_min'}) || exists($param{'lon_max'}) || exists($param{'lat_max'})))
-             || 
+             ||
              (exists($param{'lon_max'}) && !(exists($param{'lon_min'}) || exists($param{'lat_min'}) || exists($param{'lat_max'})))
              ||
              (exists($param{'lat_max'}) && !(exists($param{'lon_min'}) || exists($param{'lat_min'}) || exists($param{'lon_max'})))));
 
     croak("ERROR: Missing x,y,z coordinates.\n")
-        if (!exists($param{bbox}) 
-            && 
+        if (!exists($param{bbox})
+            &&
             ((exists($param{'x'}) && !(exists($param{'y'}) || exists($param{'z'})))
-             || 
+             ||
              (exists($param{'y'}) && !(exists($param{'x'}) || exists($param{'z'})))
              ||
              (exists($param{'z'}) && !(exists($param{'x'}) || exists($param{'y'})))));
@@ -446,21 +446,21 @@ sub box
                 ((exists($param{'lon_min'}) || exists($param{'lat_min'}) || exists($param{'lon_max'}) || exists($param{'lat_max'}))
                  ||
                  (exists($param{'x'}) || exists($param{'y'}) || exists($param{'z'}))));
-        
+
     my ($url);
-    $url = sprintf("%s?function=box&bbox=%s", $BASE_URL, $param{'bbox'}) 
+    $url = sprintf("%s?function=box&bbox=%s", $BASE_URL, $param{'bbox'})
         if defined $param{'bbox'};
-        
-    $url = sprintf("%s?function=box&lon_min=%s&lat_min=%s&lon_max=%s&lat_max=%s", $BASE_URL, 
-        $param{'lon_min'},$param{'lat_min'},$param{'lon_max'},$param{'lat_max'}) 
+
+    $url = sprintf("%s?function=box&lon_min=%s&lat_min=%s&lon_max=%s&lat_max=%s", $BASE_URL,
+        $param{'lon_min'},$param{'lat_min'},$param{'lon_max'},$param{'lat_max'})
         if (!defined($param{'bbox'}) && (exists($param{'lon_min'}) || exists($param{'lat_min'}) || exists($param{'lon_max'}) || exists($param{'lat_max'})));
-        
-    $url = sprintf("%s?function=box&x=%s&y=%s&z=%s", $BASE_URL, $param{'x'},$param{'y'},$param{'z'}) 
+
+    $url = sprintf("%s?function=box&x=%s&y=%s&z=%s", $BASE_URL, $param{'x'},$param{'y'},$param{'z'})
         if (!defined($param{'bbox'}) && (exists($param{'x'}) || exists($param{'y'}) || exists($param{'z'})));
-        
+
     $url.= sprintf("&key=%s", $self->key);
     $url = $self->_addOptionalParams($url);
-    return $self->_process($url);    
+    return $self->_process($url);
 }
 
 =head2 object()
@@ -468,7 +468,7 @@ sub box
 Returns information about object.
 
     +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         | 
+    | Key     | Description                                                         |
     +---------+---------------------------------------------------------------------+
     | id      | Identifier of the object you want to get information about.         |
     +---------+---------------------------------------------------------------------+
@@ -478,7 +478,7 @@ Returns information about object.
 
     my $key  = 'Your_API_Key';
     my $wiki = WebService::Wikimapia->new(key => $key);
-   
+
     print $wiki->object(22139);
 
 =cut
@@ -488,18 +488,18 @@ sub object
     my $self = shift;
     my $id   = shift;
     croak("ERROR: Missing object id.\n") unless defined $id;
-    
+
     my $url = sprintf("%s?function=object&id=%s", $BASE_URL, $id);
     $url.= sprintf("&key=%s", $self->key);
     $url = $self->_addOptionalParams($url);
-    return $self->_process($url);      
+    return $self->_process($url);
 }
 
 sub _process
 {
     my $self = shift;
     my $url  = shift;
-    
+
     my ($browser, $request, $response, $content);
     $browser = $self->browser;
     $browser->env_proxy;
@@ -516,14 +516,14 @@ sub _addOptionalParams
 {
     my $self = shift;
     my $url  = shift;
-    
+
     $url .= sprintf("&disable=%s",  $self->disable) if $self->disable;
     $url .= sprintf("&page=%s",     $self->page);
     $url .= sprintf("&count=%s",    $self->count);
     $url .= sprintf("&language=%s", $self->language);
     $url .= sprintf("&format=%s",   $self->format);
     $url .= sprintf("&pack=%s",     $self->pack);
-    
+
     return $url;
 }
 
@@ -531,16 +531,16 @@ sub _validateBBox
 {
     my $data = shift;
     return 0 unless ((defined $data) && ($data =~ /\,/));
-    
+
     my ($lon_min,$lat_min,$lon_max,$lat_max) = split /\,/,$data,4;
     return 0 unless (((defined $lon_min) && ($lon_min =~ /\-?\d+\.?\d+$/))
-                     && 
+                     &&
                      ((defined $lat_min) && ($lat_min =~ /\-?\d+\.?\d+$/))
                      &&
                      ((defined $lon_max) && ($lon_max =~ /\-?\d+\.?\d+$/))
                      &&
                      ((defined $lat_max) && ($lat_max =~ /\-?\d+\.?\d+$/)));
-    return 1;                    
+    return 1;
 }
 
 =head1 AUTHOR
@@ -549,7 +549,7 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-webservice-wikimapia at rt.cpan.org> ,  or 
+Please report any bugs or feature requests to C<bug-webservice-wikimapia at rt.cpan.org> ,  or
 through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WebService-Wikimapia>.
 I will be notified and then you'll automatically be notified of progress on your bug as I make
 changes.

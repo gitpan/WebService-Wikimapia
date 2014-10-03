@@ -3,24 +3,25 @@ abstract: 'Interface to Wikimapia API.'
 author:
   - 'Mohammad S Anwar <mohammad.anwar@yahoo.com>'
 build_requires:
-  HTTP::Request: 1.40
-  LWP::UserAgent: 2.33
-  Mouse: 0.93
-  MouseX::Params::Validate: 0.01
-  Readonly: 1.03
-  Test::More: 0
+  ExtUtils::MakeMaker: '0'
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3607'
+  ExtUtils::MakeMaker: '0'
+dynamic_config: 1
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.141520'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: WebService-Wikimapia
-provides:
-  WebService::Wikimapia:
-    file: lib/WebService/Wikimapia.pm
-    version: 0.03
-resources:
-  license: http://dev.perl.org/licenses/
-version: 0.03
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  HTTP::Request: '1.40'
+  LWP::UserAgent: '2.33'
+  Mouse: '0.93'
+  MouseX::Params::Validate: '0.01'
+  Readonly: '1.03'
+  Test::More: '0'
+version: '0.04'
