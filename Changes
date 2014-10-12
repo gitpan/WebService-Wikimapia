@@ -1,5 +1,11 @@
 Revision history for WebService-Wikimapia
 
+0.05  Sun Oct 12 21:07:45 2014
+      - Restructured the code using 'Moo'.
+      - Respresent the result of API into individual objects.
+      - Making use of useragent and exception object.
+      - Added 'Repository' section.
+
 0.04  Fri Oct 03 23:55:20 2014
       - Tidied up distribution.
 

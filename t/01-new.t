@@ -1,83 +1,83 @@
-#!perl
+#!/usr/bin/perl
 
 use strict; use warnings;
 use WebService::Wikimapia;
 use Test::More tests => 10;
 
 eval { WebService::Wikimapia->new(); };
-like($@, qr/Attribute \(key\) is required/);
+like($@, qr/Missing required arguments: api_key/);
 
-eval { WebService::Wikimapia->new(key => 'aabbccd-aabbccdd'); };
-like($@, qr/Attribute \(key\) does not pass the type constraint/);
+eval { WebService::Wikimapia->new({ api_key => 'aabbccd-aabbccdd' }); };
+like($@, qr/isa check for "api_key" failed/);
 
-eval 
-{ 
-    WebService::Wikimapia->new(
-        key    => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
-        format => 'jsson',
-    ); 
+eval
+{
+    WebService::Wikimapia->new({
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        format  => 'jsson'
+    });
 };
-like($@, qr/Attribute \(format\) does not pass the type constraint/);
+like($@, qr/isa check for "format" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key  => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
-        page => 'a',
-    ); 
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        page    => 'a',
+    );
 };
-like($@, qr/Attribute \(page\) does not pass the type constraint/);
+like($@, qr/isa check for "page" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key   => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
-        count => 'a',
-    ); 
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        count   => 'a',
+    );
 };
-like($@, qr/Attribute \(count\) does not pass the type constraint/);
+like($@, qr/isa check for "count" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key  => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
-        page => -1,
-    ); 
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        page    => -1,
+    );
 };
-like($@, qr/Attribute \(page\) does not pass the type constraint/);
+like($@, qr/isa check for "page" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key   => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
-        count => -1,
-    ); 
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        count   => -1,
+    );
 };
-like($@, qr/Attribute \(count\) does not pass the type constraint/);
+like($@, qr/isa check for "count" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key      => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        api_key  => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
         language => 'enn',
-    ); 
+    );
 };
-like($@, qr/Attribute \(language\) does not pass the type constraint/);
+like($@, qr/isa check for "language" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key  => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
-        pack => 'noone',
-    ); 
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        pack    => 'noone',
+    );
 };
-like($@, qr/Attribute \(pack\) does not pass the type constraint/);
+like($@, qr/isa check for "pack" failed/);
 
-eval 
-{ 
+eval
+{
     WebService::Wikimapia->new(
-        key     => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
+        api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd',
         disable => 'pollygon',
-    ); 
+    );
 };
-like($@, qr/Attribute \(disable\) does not pass the type constraint/);
+like($@, qr/isa check for "disable" failed/);

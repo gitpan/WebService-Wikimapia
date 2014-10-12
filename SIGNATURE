@@ -14,27 +14,47 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 118d41c3c82f21de6f3a39a94be0024d6bdee580 Changes
-SHA1 d7ec6af4035560434f07513dff7bde81257d7449 MANIFEST
+SHA1 ab9a5e59a4823de0d5f28235a9f9c5b8bb12d90e Changes
+SHA1 f4c4d287c14f9103f0cf95bfa3567d90c51a7bf8 MANIFEST
 SHA1 5f29cdcbfacb9c46ac155fff9844aceeb064aef1 MANIFEST.SKIP
-SHA1 bf1cca072a991266f0d448f5f2ef251173887d04 Makefile.PL
-SHA1 d798e6ba22a3f3a3bb2d3ca7ff0fa4768f7e5908 README
-SHA1 3edcb2e1af9d854509cf481dd5c5964ace349719 lib/WebService/Wikimapia.pm
-SHA1 8c021c9ef479938493f4efcdbe7e23b33aeee0a8 t/00-load.t
-SHA1 47969cd77f13af777a41ee1206674dde04948d67 t/01-new.t
-SHA1 b508effd9cf772cc875618adf01cbf70bdac94cb t/02-search.t
-SHA1 80b35a050598d926075fab52a41906a2f540385e t/03-box.t
-SHA1 d5703eeb6694120364ddea92e788851af7679f4c t/04-object.t
+SHA1 6694f3c07541b8aad2690e41431113db0d9d43d4 Makefile.PL
+SHA1 21a00f1fd7757ae06defa6601d530fe423005e30 README
+SHA1 2f0870d9d708363d751dc866910d2e487a5cf6ac lib/WebService/Wikimapia.pm
+SHA1 5f5634191ea26bc83d80a2a9988d3485b048a548 lib/WebService/Wikimapia/Category.pm
+SHA1 622e51e59525d57a44333c82da431676b65d1ce0 lib/WebService/Wikimapia/Category/Synonym.pm
+SHA1 ac1a66a699ab6bffa326429bc7e5f5ec2bbab53d lib/WebService/Wikimapia/City.pm
+SHA1 63cf254f33d24258e270abbe045fea19d79b922c lib/WebService/Wikimapia/Comment.pm
+SHA1 b3804f29f320fd7fac47f35202324f6c3a1e08f8 lib/WebService/Wikimapia/GlobalAdmin.pm
+SHA1 469459238b7306ebbc6256d077de56fb307fc1a1 lib/WebService/Wikimapia/Hotel.pm
+SHA1 fd5e0a682a4d31bd0dfa5c98815b124e8917a377 lib/WebService/Wikimapia/Language.pm
+SHA1 32719b8f9be12205ea54310bd4b90b506b1b0c1f lib/WebService/Wikimapia/Location.pm
+SHA1 dd3b9f50fccc7c1e9f2d5e472b44fccaac6b4d5f lib/WebService/Wikimapia/Object.pm
+SHA1 57ee024d8e22a568da1ad4ba07b0a6efce8deb67 lib/WebService/Wikimapia/Params.pm
+SHA1 00308ab4eafd1562b77fc8aab30506cf5965fac4 lib/WebService/Wikimapia/Photo.pm
+SHA1 39592616f3b71184b2419c8df01bc4eca48a3b55 lib/WebService/Wikimapia/Place.pm
+SHA1 6fdd85bf6a0d24138450eab25a6e56cf88b3ef28 lib/WebService/Wikimapia/Polygon.pm
+SHA1 9c498d0c2c1ddc2d4de0bf48adabdfa77f4e8a60 lib/WebService/Wikimapia/Response.pm
+SHA1 00202a45f7954aefb046672e8f5c543f564f8a07 lib/WebService/Wikimapia/Result.pm
+SHA1 a2ba36242b2cad8cf997ed796597f427a12ff557 lib/WebService/Wikimapia/Street.pm
+SHA1 d1c491ab1eaa44afc94087170ffb0851d7371f4c lib/WebService/Wikimapia/Tag.pm
+SHA1 8ff6522c47f58683e6594ee9cffc252a1541fafe lib/WebService/Wikimapia/User.pm
+SHA1 4618ca0caecb50af1feb8be7235c2a96a12c6ce6 lib/WebService/Wikimapia/UserAgent.pm
+SHA1 51ce2877f91047e547dcdd1dadbc4ec44b799265 lib/WebService/Wikimapia/UserAgent/Exception.pm
+SHA1 e5091ffe765a93dad1ee53c415cf5ab8d2967850 t/00-load.t
+SHA1 1a72b445d2f6bc7aeb09f72a8d48f21ac10d7660 t/01-new.t
+SHA1 4ca20a32b58182a9a5bf6d73ac8a2ff9141b1c30 t/02-search.t
+SHA1 f56c0552cbb4b5b908b53f1a9a1d8c8ecca95b57 t/03-box.t
+SHA1 54409f19f8022dcdd5c128dfc01549dc6f1a7f28 t/04-object.t
 SHA1 2b8ffb7e4f399af95d092743846ac8d438f2c53e t/manifest.t
 SHA1 0765c9ff0cc4319f415bb08d0053b7717a8284a2 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iQEcBAEBAgAGBQJULynEAAoJENoXJXWo7C/pyG0H/jq83O4BBUrI/oyAIwtkhcAC
-k53kQxcemDRlYFnQYbMlx0ctaoPsBL1fYvuJNSnMs6S25uu+ybj2Imefz2rAnp1C
-PWgYtGEepReufbDKHQbvUtd9O2iiGv/mHrHnsAnTKtoht7bA1mh2vPiodNZ+Jq42
-QnT+Mn92mcrzltKk0QefmBrV+SrnfGX5MvVKDhq+bbzJDiaLk5QBdkzKvA/sjQUv
-hvSw1o2kFkRVSHiuk3T1lq7LE7LTRjE7QHiNL8TTqJ1dhrkta95c0J0a1+ayX4lZ
-dcsC64ZGVVY/t4gwNE9/o6pT+C0hn8IvM1x74bBWaJ8NFTXRt4oBhySSD/x4RhA=
-=IRBv
+iQEcBAEBAgAGBQJUOuBiAAoJENoXJXWo7C/pfycH/0FmpHVzOERB36dlNic5Gn6f
+ZVoAL0a7LtU/m+3kYEmXjqBrWYsvGPY6fgaHuRYc9thmAhqnczSzQ7uQJiOFoQWR
+E6RtSjrpMbx7XNCBLFXuRciFrN2JlHhoCm2X6JhnRpm2UIOCk1U2yPsndT118mFH
+DHG1uaawDTYJH+n+NpQsEdURrQC0pPcnRtLo7rSMB1qtTpuiBjADkduItJXvGXCo
+tDw5xA3K4t4eL/RjtJx7xppPnjWuuqMzEEM9Syu268uUvPBkpkzOgvccPK3D1JWB
+rNsJvGhrYj86ayHooswJMxKPHGKQhsXIOCG4Zw8t5EA3nEkn2rdvK12JwFEEDZA=
+=zA8L
 -----END PGP SIGNATURE-----

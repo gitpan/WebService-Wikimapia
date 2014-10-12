@@ -1,19 +1,16 @@
-#!perl
+#!/usr/bin/perl
 
 use strict; use warnings;
 use WebService::Wikimapia;
-use Test::More tests => 4;
+use Test::More tests => 3;
 
-my $wiki = WebService::Wikimapia->new(key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd');
+my $wikimapia = WebService::Wikimapia->new({ api_key => 'aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd-aabbccdd' });
 
-eval { $wiki->box(); };
-like($@, qr/ERROR: Missing boundary box coordinates/);
+eval { $wikimapia->box(); };
+like($@, qr/ERROR: Missing params list/);
 
-eval { $wiki->box(bbox => '1,2,3'); };
-like($@, qr/The 'bbox' parameter/);
+eval { $wikimapia->box({ bbox => '1,2,3' }); };
+like($@, qr/ERROR: Invalid data type 'bbox'/);
 
-eval { $wiki->box(lon_min=> 1); };
-like($@, qr/ERROR: Missing lon_min\/lat_min\/lon_max\/lat_max coordinates/);
-
-eval { $wiki->box(x=> 1); };
-like($@, qr/ERROR: Missing x\,y\,z coordinates/);
+eval { $wikimapia->box({ lon_min => 1 }); };
+like($@, qr/ERROR: Missing mandatory param: lat_max/);
