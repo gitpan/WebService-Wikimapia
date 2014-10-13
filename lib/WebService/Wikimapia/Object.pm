@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Object;
 
-$WebService::Wikimapia::Object::VERSION = '0.05';
+$WebService::Wikimapia::Object::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Object - Placeholder for 'object' of search result of L<W
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -44,19 +44,25 @@ has 'location'      => (is => 'ro');
 sub BUILDARGS {
     my ($class, $args) = @_;
 
-    my $tags = [];
-    foreach my $tag (@{$args->{tags}}) {
-        push @$tags, WebService::Wikimapia::Tag->new($tag);
+    if (exists $args->{'tags'}) {
+        my $tags = [];
+        foreach my $tag (@{$args->{'tags'}}) {
+            push @$tags, WebService::Wikimapia::Tag->new($tag);
+        }
+        $args->{'tags'} = $tags;
     }
 
-    my $polygons = [];
-    foreach my $polygon (@{$args->{polygon}}) {
-        push @$polygons, WebService::Wikimapia::Polygon->new($polygon);
+    if (exists $args->{'polygon'}) {
+        my $polygons = [];
+        foreach my $polygon (@{$args->{'polygon'}}) {
+            push @$polygons, WebService::Wikimapia::Polygon->new($polygon);
+        }
+        $args->{'polygon'} = $polygons;
     }
 
-    $args->{tags}     = $tags;
-    $args->{polygon}  = $polygons;
-    $args->{location} = WebService::Wikimapia::Location->new($args->{location});
+    if (exists $args->{'location'}) {
+        $args->{'location'} = WebService::Wikimapia::Location->new($args->{'location'});
+    }
 
     return $args;
 }

@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Hotel;
 
-$WebService::Wikimapia::Hotel::VERSION = '0.05';
+$WebService::Wikimapia::Hotel::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Hotel - Placeholder for 'hotel' of L<WebService::Wikimapi
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -28,8 +28,6 @@ has 'lon'          => (is => 'ro');
 has 'lat'          => (is => 'ro');
 has 'url'          => (is => 'ro');
 has 'photo_url'    => (is => 'ro');
-
-=head1 DESCRIPTION
 
 =head1 METHODS
 

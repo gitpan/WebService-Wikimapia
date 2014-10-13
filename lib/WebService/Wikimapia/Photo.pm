@@ -1,14 +1,14 @@
 package WebService::Wikimapia::Photo;
 
-$WebService::Wikimapia::Photo::VERSION = '0.05';
+$WebService::Wikimapia::Photo::VERSION = '0.06';
 
 =head1 NAME
 
-WebService::Wikimapia::Photo - Placeholder for 'photo' of L<WebService::Wikimapia::Street>.
+WebService::Wikimapia::Photo - Placeholder for 'photo' of L<WebService::Wikimapia>.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 

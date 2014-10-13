@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Response;
 
-$WebService::Wikimapia::Response::VERSION = '0.05';
+$WebService::Wikimapia::Response::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Response - Placeholder for response of L<WebService::Wiki
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 

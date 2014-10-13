@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Location;
 
-$WebService::Wikimapia::Location::VERSION = '0.05';
+$WebService::Wikimapia::Location::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Location - Placeholder for 'location' of L<WebService::Wi
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -37,12 +37,12 @@ has 'gadm'           => (is => 'ro');
 sub BUILDARGS {
     my ($class, $args) = @_;
 
-    if (exists $args->{gadm}) {
+    if (exists $args->{'gadm'}) {
         my $gadms = [];
-        foreach my $gadm (@{$args->{gadm}}) {
+        foreach my $gadm (@{$args->{'gadm'}}) {
             push @$gadms, WebService::Wikimapia::GlobalAdmin->new($gadm);
         }
-        $args->{gadm} = $gadms;
+        $args->{'gadm'} = $gadms;
     }
 
     return $args;

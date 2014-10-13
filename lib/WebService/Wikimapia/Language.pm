@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Language;
 
-$WebService::Wikimapia::Langauge::VERSION = '0.05';
+$WebService::Wikimapia::Langauge::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Language - Placeholder for 'language' of L<WebService::Wi
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -119,4 +119,4 @@ OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of WebService::Wikimapia::Polygon
+1; # End of WebService::Wikimapia::Language

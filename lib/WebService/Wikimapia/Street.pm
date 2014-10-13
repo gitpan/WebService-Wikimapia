@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Street;
 
-$WebService::Wikimapia::Street::VERSION = '0.05';
+$WebService::Wikimapia::Street::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Street - Placeholder for 'street' of L<WebService::Wikima
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -194,7 +194,7 @@ Returns the reference to the list of objects of type L<WebService::Wikimapia::Ci
 
 =head2 nearestStreets()
 
-Returns the reference to the list of objects of type L<WebService::Wikimapia::NStreet>.
+Returns the reference to the list of objects of type L<WebService::Wikimapia::City>.
 
 =head2 availableLanguages()
 
@@ -219,7 +219,7 @@ bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc WebService::Wikimapia::Place
+    perldoc WebService::Wikimapia::Street
 
 You can also look for information at:
 
@@ -283,4 +283,4 @@ OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of WebService::Wikimapia::Place
+1; # End of WebService::Wikimapia::Street

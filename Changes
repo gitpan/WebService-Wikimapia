@@ -1,5 +1,9 @@
 Revision history for WebService-Wikimapia
 
+0.06  Mon Oct 13 00:58:10 2014
+      - Fixed the typo in the package WebService::Wikimapia::UserAgent::Exception.
+      - Tidied up pod document.
+
 0.05  Sun Oct 12 21:07:45 2014
       - Restructured the code using 'Moo'.
       - Respresent the result of API into individual objects.

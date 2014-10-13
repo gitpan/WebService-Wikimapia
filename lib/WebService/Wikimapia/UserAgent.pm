@@ -1,14 +1,14 @@
 package WebService::Wikimapia::UserAgent;
 
-$WebService::Wikimapia::UserAgent::VERSION = '0.05';
+$WebService::Wikimapia::UserAgent::VERSION = '0.06';
 
 =head1 NAME
 
-WebService::Wikimapia::UserAgent - Interface to Wikimapia API.
+WebService::Wikimapia::UserAgent - Interface to user agent for Wikimapia API.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -24,8 +24,6 @@ use namespace::clean;
 
 has 'api_key' => (is => 'ro', isa => $API_KEY, required => 1);
 has 'ua'      => (is => 'rw', default  => sub { HTTP::Tiny->new(agent => "WebService-Wikimapia/v1"); } );
-
-=head1 DESCRIPTION
 
 =head1 METHODS
 

@@ -1,6 +1,6 @@
 package WebService::Wikimapia::City;
 
-$WebService::Wikimapia::City::VERSION = '0.05';
+$WebService::Wikimapia::City::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::City - Placeholder for 'city' of L<WebService::Wikimapia:
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -17,7 +17,6 @@ use Data::Dumper;
 
 use Moo;
 use namespace::clean;
-
 
 has 'id'            => (is => 'ro');
 has 'title'         => (is => 'ro');
@@ -28,8 +27,6 @@ has 'language_id'   => (is => 'ro');
 has 'language_name' => (is => 'ro');
 has 'language_iso'  => (is => 'ro');
 has 'distance'      => (is => 'ro');
-
-=head1 DESCRIPTION
 
 =head1 METHODS
 
@@ -70,7 +67,7 @@ bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc WebService::Wikimapia::Polygon
+    perldoc WebService::Wikimapia::City
 
 You can also look for information at:
 
@@ -134,4 +131,4 @@ OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of WebService::Wikimapia::Polygon
+1; # End of WebService::Wikimapia::City

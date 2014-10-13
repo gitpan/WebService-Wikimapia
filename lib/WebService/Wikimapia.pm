@@ -1,6 +1,6 @@
 package WebService::Wikimapia;
 
-$WebService::Wikimapia::VERSION = '0.05';
+$WebService::Wikimapia::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia - Interface to Wikimapia API.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 

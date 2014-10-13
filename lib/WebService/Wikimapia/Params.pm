@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Params;
 
-$WebService::Wikimapia::Params::VERSION = '0.05';
+$WebService::Wikimapia::Params::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Params - Placeholder for parameters for WebService::Wikim
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -145,40 +145,40 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 REPOSITORY
 
-L<https://github.com/Manwar/WWW-Google-Places>
+L<https://github.com/Manwar/WebService-Wikimapia>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-www-google-places at rt.cpan.org>,
-or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Google-Places>.
-I will be notified, and then you'll automatically be notified of progress on your
+Please  report  any  bugs  or feature  requests to C<bug-webservice-wikimapia  at
+rt.cpan.org>, or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WebService-Wikimapia>.
+I will be notified and then you'll automatically be notified of  progress on your
 bug as I make changes.
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc WWW::Google::Places::Params
+    perldoc WebService::Wikimapia::Params
 
 You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Google-Places>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WebService-Wikimapia>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/WWW-Google-Places>
+L<http://annocpan.org/dist/WebService-Wikimapia>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/WWW-Google-Places>
+L<http://cpanratings.perl.org/d/WebService-Wikimapia>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/WWW-Google-Places/>
+L<http://search.cpan.org/dist/WebService-Wikimapia/>
 
 =back
 
@@ -222,4 +222,4 @@ OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of WWW::Google::Places::Params
+1; # End of WebService::Wikimapia::Params

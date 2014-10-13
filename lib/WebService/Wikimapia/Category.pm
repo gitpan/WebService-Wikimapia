@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Category;
 
-$WebService::Wikimapia::Category::VERSION = '0.05';
+$WebService::Wikimapia::Category::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Category - Placeholder for 'category' of L<WebService::Wi
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 

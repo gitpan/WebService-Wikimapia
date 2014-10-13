@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Result;
 
-$WebService::Wikimapia::Result::VERSION = '0.05';
+$WebService::Wikimapia::Result::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Result - Placeholder for search result of L<WebService::W
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
