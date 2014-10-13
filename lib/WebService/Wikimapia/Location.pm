@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Location;
 
-$WebService::Wikimapia::Location::VERSION = '0.06';
+$WebService::Wikimapia::Location::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Location - Placeholder for 'location' of L<WebService::Wi
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 

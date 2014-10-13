@@ -1,6 +1,6 @@
 package WebService::Wikimapia::City;
 
-$WebService::Wikimapia::City::VERSION = '0.06';
+$WebService::Wikimapia::City::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::City - Placeholder for 'city' of L<WebService::Wikimapia:
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 

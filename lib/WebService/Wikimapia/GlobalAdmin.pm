@@ -1,6 +1,6 @@
 package WebService::Wikimapia::GlobalAdmin;
 
-$WebService::Wikimapia::GlobalAdmin::VERSION = '0.06';
+$WebService::Wikimapia::GlobalAdmin::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::GlobalAdmin - Placeholder for 'gadm' of L<WebService::Wik
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 

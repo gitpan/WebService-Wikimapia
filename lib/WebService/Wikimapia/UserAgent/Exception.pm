@@ -1,6 +1,6 @@
 package WebService::Wikimapia::UserAgent::Exception;
 
-$WebService::Wikimapia::UserAgent::Exception::VERSION = '0.06';
+$WebService::Wikimapia::UserAgent::Exception::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::UserAgent::Exception - Exception handler for the module L
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 

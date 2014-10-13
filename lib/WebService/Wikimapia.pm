@@ -1,6 +1,6 @@
 package WebService::Wikimapia;
 
-$WebService::Wikimapia::VERSION = '0.06';
+$WebService::Wikimapia::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia - Interface to Wikimapia API.
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
@@ -17,9 +17,8 @@ use JSON;
 use Data::Dumper;
 
 use WebService::Wikimapia::UserAgent;
-use WebService::Wikimapia::Response;
 use WebService::Wikimapia::Category;
-use WebService::Wikimapia::Result;
+use WebService::Wikimapia::Place;
 use WebService::Wikimapia::Object;
 use WebService::Wikimapia::Street;
 use WebService::Wikimapia::Params qw($Disable $Format $Pack $FIELDS $Language $Num validate);
@@ -39,25 +38,26 @@ has 'format'   => (is => 'ro', isa => $Format,   default => sub { return 'json';
 
 =head1 DESCRIPTION
 
-Wikimapia API is a system that allows you to receive data from Wikimapia map & that can easily
-be integrate Wikimapia Geo Data into your external application/web site. And it's all free.You
-need to get the API Key first from here: http://wikimapia.org/api?action=create_key
+Wikimapia API is a system that allows you to receive data from Wikimapia map  and
+that can easily be integrate Wikimapia Geo Data into your  external application /
+web site. And it's all free. You need to get the API Key first from L<here|http://wikimapia.org/api?action=create_key>.
 Please note API is still in developing stage (beta).
+
+Recent  changes  to  the  API by Wikimapia, marked the method search(), box() and
+object() deprecated.
 
 =head1 CONSTRUCTOR
 
-The only key required is 'key' which is an api key. Rest of them are optional.
+The only key required is 'api_key' which is an api key.Rest of them are optional.
 
-    +----------+-----------------------------------------------------------------------------+
-    | Key      | Description                                                                 |
-    +----------+-----------------------------------------------------------------------------+
-    | api_key  | Wikimapia API Key.                                                          |
-    | disable  | Option to disable the output of various parameters. You can disable fields  |
-    |          | for xml, json(p) formats. Allowed fields to disable: location, polygon.     |
-    | page     | This is page number. 1 is default.                                          |
-    | count    | Determines the number of results/page. 50 is default.                       |
-    | language | Language in ISO 639-1 format. Default is 'en'.                              |
-    +----------+-----------------------------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | api_key  | Wikimapia API Key.                                             |
+    | page     | This is page number. 1 is default.                             |
+    | count    | Determines the number of results/page. 50 is default.          |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
@@ -262,12 +262,12 @@ The only key required is 'key' which is an api key. Rest of them are optional.
 
 Returns an object of type L<WebService::Wikimapia::Place>.
 
-    +----------+--------------------------------------------------------+
-    | Key      | Description                                            |
-    +----------+--------------------------------------------------------+
-    | id       | Place Id (required).                                  |
-    | language | Language in ISO 639-1 format. Default is 'en'.         |
-    +----------+--------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | id       | Place Id (required).                                           |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
@@ -276,74 +276,53 @@ Returns an object of type L<WebService::Wikimapia::Place>.
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
     my $place     = $wikimapia->place_getbyid({ id => 55 });
 
-    print "Title: ", $place->title, "\n";
+    print "Place title: ", $place->title, "\n";
 
 =cut
 
 sub place_getbyid {
     my ($self, $params) = @_;
 
-    my $fields = { 'id' => 1, 'language' => 0 };
-    validate($fields, $params);
-
+    my $fields   = { 'id' => 1, 'language' => 0 };
     my $url      = $self->_url('place.getbyid', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
-    #die Dumper($contents);
 
     return WebService::Wikimapia::Place->new($contents);
 }
 
 =head2 place_getbyarea()
 
-Returns an objects of type L<WebService::Wikimapia::Response>.
+Returns ref to the list of object of type L<WebService::Wikimapia::Place>.
 
-    +----------+---------------------------------------------------------------------+
-    | Key      | Description                                                         |
-    +----------+---------------------------------------------------------------------+
-    | lon_min  | Longiture Min.                                                      |
-    | lat_min  | Latitude Min.                                                       |
-    | lon_max  | Longitude Max.                                                      |
-    | lat_max  | Latitude Max.                                                       |
-    | x        | Tile's x co-ordinate.                                               |
-    | y        | Tile's y co-ordinate.                                               |
-    | z        | Tile's z co-ordinate.                                               |
-    | page     | This is page number. 1 is default.                                  |
-    | count    | Determines the number of results/page. 50 is default.               |
-    | language | Language in ISO 639-1 format. Default is 'en'.                      |
-    +----------+---------------------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | lon_min  | Longiture Min.                                                 |
+    | lat_min  | Latitude Min.                                                  |
+    | lon_max  | Longitude Max.                                                 |
+    | lat_max  | Latitude Max.                                                  |
+    | x        | Tile's x co-ordinate.                                          |
+    | y        | Tile's y co-ordinate.                                          |
+    | z        | Tile's z co-ordinate.                                          |
+    | page     | This is page number. 1 is default.                             |
+    | count    | Determines the number of results/page. 50 is default.          |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
 
     my $api_key   = 'Your_API_Key';
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
-
-    my $response1 = $wikimapia->place_getbyarea({
+    my $places    = $wikimapia->place_getbyarea({
         'lon_min' => 2.292493,
         'lat_min' => 48.8590143,
         'lon_max' => 2.293493,
         'lat_max' => 48.8599143
     });
-    print "Respone (lat/lon):", $response1->count, "\n";
 
-    my $response2 = $wikimapia->place_getbyarea({
-        'x' => 33185,
-        'y' => 22545,
-        'z' => 16
-    });
-    print "Respone (x/y/z):", $response2->count, "\n";
-
-    my $response3 = $wikimapia->place_getbyarea({
-        'lon_min' => 2.292493,
-        'lat_min' => 48.8590143,
-        'lon_max' => 2.293493,
-        'lat_max' => 48.8599143,
-        'x' => 33185,
-        'y' => 22545,
-        'z' => 16
-    });
-    print "Respone (lat/lon/x/y/z):", $response3->count, "\n";
+    print "Place title: ", $places->[0]->title, "\n";
 
 =cut
 
@@ -376,89 +355,98 @@ sub place_getbyarea {
     $fields->{'count'}    = 0;
     $fields->{'language'} = 0;
 
-    validate($fields, $params);
-
     my $url      = $self->_url('place.getbyarea', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
 
-    return WebService::Wikimapia::Response->new($contents);
+    my $places = [];
+    foreach my $place (@{$contents->{'places'}}) {
+        push @$places, WebService::Wikimapia::Place->new($place);
+    }
+
+    return $places;
 }
 
 =head2 place_getnearest()
 
-Returns an object of type L<WebService::Wikimapia::Response>.
+Returns ref to the list of object of type L<WebService::Wikimapia::Place>.
 
-    +----------+-----------------------------------------------------------------+
-    | Key      | Description                                                     |
-    +----------+-----------------------------------------------------------------+
-    | lon      | Longitude.                                                      |
-    | lat      | Latitude.                                                       |
-    | count    | Determines the number of results/page. 50 is default.           |
-    | language | Language in ISO 639-1 format. Default is 'en'.                  |
-    +----------+-----------------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | lon      | Longitude.                                                     |
+    | lat      | Latitude.                                                      |
+    | count    | Determines the number of results/page. 50 is default.          |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
 
     my $api_key   = 'Your_API_Key';
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
-    my $response  = $wikimapia->place_getnearest({ 'lon' => 2.29451, 'lat' => 48.858252 });
+    my $places    = $wikimapia->place_getnearest({ 'lon' => 2.29451, 'lat' => 48.858252 });
 
-    print "Respone count:", $response->count, "\n";
+    print "Place title: ", $places->[0]->title, "\n";
 
 =cut
 
 sub place_getnearest {
     my ($self, $params) = @_;
 
-    my $fields = { 'lat' => 1, 'lon' => 1, 'count' => 0, 'language' => 0 };
-    validate($fields, $params);
-
+    my $fields   = { 'lat' => 1, 'lon' => 1, 'count' => 0, 'language' => 0 };
     my $url      = $self->_url('place.getnearest', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
 
-    return WebService::Wikimapia::Response->new($contents);
+    my $places = [];
+    foreach my $place (@{$contents->{'places'}}) {
+        push @$places, WebService::Wikimapia::Place->new($place);
+    }
+
+    return $places;
 }
 
 =head2 place_search()
 
-Returns an object of type L<WebService::Wikimapia::Response>.
+Returns ref to the list of object of type L<WebService::Wikimapia::Place>.
 
-    +----------+--------------------------------------------------------+
-    | Key      | Description                                            |
-    +----------+--------------------------------------------------------+
-    | q        | Query to search in wikimapia (UTF-8).                  |
-    | lat      | Coordinates of the "search point" lat means latitude.  |
-    | lon      | Coordinates of the "search point" lon means longitude. |
-    | page     | This is page number. 1 is default.                     |
-    | count    | Determines the number of results/page. 50 is default.  |
-    | language | Language in ISO 639-1 format. Default is 'en'.         |
-    +----------+--------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | q        | Query to search in wikimapia (UTF-8).                          |
+    | lat      | Coordinates of the "search point" lat means latitude.          |
+    | lon      | Coordinates of the "search point" lon means longitude.         |
+    | page     | This is page number. 1 is default.                             |
+    | count    | Determines the number of results/page. 50 is default.          |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
 
     my $api_key   = 'Your_API_Key';
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
-    my $response  = $wikimapia->place_search({ q => 'Recreation', lat => 37.7887088, lon => -122.4997044 });
+    my $places    = $wikimapia->place_search({ q => 'Recreation', lat => 37.7887088, lon => -122.4997044 });
 
-    print "Response count: ", $response->count, "\n";
+    print "Place title: ", $places->[0]->title, "\n";
 
 =cut
 
 sub place_search {
     my ($self, $params) = @_;
 
-    my $fields = { 'q' => 1, 'lat' => 1, 'lon' => 1, 'page' => 0, 'count' => 0, 'language' => 0 };
-    validate($fields, $params);
-
+    my $fields   = { 'q' => 1, 'lat' => 1, 'lon' => 1, 'page' => 0, 'count' => 0, 'language' => 0 };
     my $url      = $self->_url('place.search', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
 
-    return WebService::Wikimapia::Response->new($contents);
+    my $places = [];
+    foreach my $place (@{$contents->{'places'}}) {
+        push @$places, WebService::Wikimapia::Place->new($place);
+    }
+
+    return $places;
 }
 
 sub place_update {
@@ -469,12 +457,12 @@ sub place_update {
 
 Returns an object of type L<WebService::Wikimapia::Street>.
 
-    +----------+--------------------------------------------------------+
-    | Key      | Description                                            |
-    +----------+--------------------------------------------------------+
-    | id       | Street Id (required).                                  |
-    | language | Language in ISO 639-1 format. Default is 'en'.         |
-    +----------+--------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | id       | Street Id (required).                                          |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
@@ -490,9 +478,7 @@ Returns an object of type L<WebService::Wikimapia::Street>.
 sub street_getbyid {
     my ($self, $params) = @_;
 
-    my $fields = { 'id' => 1, 'language' => 0 };
-    validate($fields, $params);
-
+    my $fields   = { 'id' => 1, 'language' => 0 };
     my $url      = $self->_url('street.getbyid', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
@@ -504,30 +490,28 @@ sub street_getbyid {
 
 Returns an object of type L<WebService::Wikimapia::Category>.
 
-    +----------+--------------------------------------------------------+
-    | Key      | Description                                            |
-    +----------+--------------------------------------------------------+
-    | id       | Category Id (required).                                |
-    | language | Language in ISO 639-1 format. Default is 'en'.         |
-    +----------+--------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | id       | Category Id (required).                                        |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
 
     my $api_key   = 'Your_API_Key';
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
-    my $category  = $wikimapia->category_getbyid(203);
+    my $category  = $wikimapia->category_getbyid({  id => 203 });
 
-    print $category->name, "\n";
+    print "Category name: ", $category->name, "\n";
 
 =cut
 
 sub category_getbyid {
     my ($self, $params) = @_;
 
-    my $fields = { 'id' => 1, 'language' => 0 };
-    validate($fields, $params);
-
+    my $fields   = { 'id' => 1, 'language' => 0 };
     my $url      = $self->_url('category.getbyid', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
@@ -537,15 +521,15 @@ sub category_getbyid {
 
 =head2 category_getall()
 
-Returns ref to the list object of type L<WebService::Wikimapia::Category>.
+Returns ref to the list of object of type L<WebService::Wikimapia::Category>.
 
-    +----------+--------------------------------------------------------+
-    | Key      | Description                                            |
-    +----------+--------------------------------------------------------+
-    | page     | This is page number. 1 is default.                     |
-    | count    | Determines the number of results/page. 50 is default.  |
-    | language | Language in ISO 639-1 format. Default is 'en'.         |
-    +----------+--------------------------------------------------------+
+    +----------+----------------------------------------------------------------+
+    | Key      | Description                                                    |
+    +----------+----------------------------------------------------------------+
+    | page     | This is page number. 1 is default.                             |
+    | count    | Determines the number of results/page. 50 is default.          |
+    | language | Language in ISO 639-1 format. Default is 'en'.                 |
+    +----------+----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
@@ -554,7 +538,7 @@ Returns ref to the list object of type L<WebService::Wikimapia::Category>.
     my $wikimapia  = WebService::Wikimapia->new({ api_key => $api_key });
     my $categories = $wikimapia->category_getall;
 
-    print $categories->[0]->name, "\n";
+    print "Category name: ", $categories->[0]->name, "\n";
 
 =cut
 
@@ -563,11 +547,11 @@ sub category_getall {
 
     my ($url);
     if (defined $params) {
-        $url = $self->_url('category.getall');
-    }
-    else {
         my $fields = { 'page' => 0, 'count' => 0, 'language' => 0 };
         $url = $self->_url('category.getall', $fields, $params);
+    }
+    else {
+        $url = $self->_url('category.getall');
     }
 
     my $response = $self->get($url);
@@ -581,26 +565,26 @@ sub category_getall {
     return $categories;
 }
 
-=head2 search()
+=head2 search() [DEPRECATED]
 
-Returns ref to the list object of type L<WebService::Wikimapia::Result>.
+Returns ref to the list object of type L<WebService::Wikimapia::Place>.
 
-    +-----+--------------------------------------------------------+
-    | Key | Description                                            |
-    +-----+--------------------------------------------------------+
-    | q   | Query to search in wikimapia (UTF-8).                  |
-    | lat | Coordinates of the "search point" lat means latitude.  |
-    | lon | Coordinates of the "search point" lon means longitude. |
-    +-----+--------------------------------------------------------+
+    +-----+---------------------------------------------------------------------+
+    | Key | Description                                                         |
+    +-----+---------------------------------------------------------------------+
+    | q   | Query to search in wikimapia (UTF-8).                               |
+    | lat | Coordinates of the "search point" lat means latitude.               |
+    | lon | Coordinates of the "search point" lon means longitude.              |
+    +-----+---------------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
 
     my $api_key   = 'Your_API_Key';
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
-    my $results   = $wikimapia->search({ q => 'Recreation', lat => 37.7887088, lon => -122.4997044 });
+    my $places    = $wikimapia->search({ q => 'Recreation', lat => 37.7887088, lon => -122.4997044 });
 
-    print $results->[0]->name, "\n";
+    print "Place name: ", $places->[0]->name, "\n";
 
 =cut
 
@@ -609,45 +593,43 @@ sub search {
 
     print {*STDERR} "WARNING: Deprecated method search(), please refer the perldoc.\n";
     my $fields   = { 'q' => 1, 'lat' => 1, 'lon' => 1 };
-    validate($fields, $params);
-
     my $url      = $self->_url('search', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
 
-    my $results = [];
-    foreach my $content (@{$contents->{folder}}) {
-        push @$results, WebService::Wikimapia::Result->new($content);
+    my $places = [];
+    foreach my $place (@{$contents->{'folder'}}) {
+        push @$places, WebService::Wikimapia::Place->new($place);
     }
 
-    return $results;
+    return $places;
 }
 
-=head2 box()
+=head2 box() [DEPRECATED]
 
-Returns ref of list object of type L<WebService::Wikimapia::Result>.
+Returns ref to the list of object of type L<WebService::Wikimapia::Place>.
 
-    +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         |
-    +---------+---------------------------------------------------------------------+
-    | bbox    | Coordinates of the selected box [lon_min,lat_min,lon_max,lat_max].  |
-    | lon_min | Longiture Min.                                                      |
-    | lat_min | Latitude Min.                                                       |
-    | lon_max | Longitude Max.                                                      |
-    | lat_max | Latitude Max.                                                       |
-    | x       | Tile's x co-ordinate.                                               |
-    | y       | Tile's y co-ordinate.                                               |
-    | z       | Tile's z co-ordinate.                                               |
-    +---------+---------------------------------------------------------------------+
+    +---------+-------------------------------------------------------------------+
+    | Key     | Description                                                       |
+    +---------+-------------------------------------------------------------------+
+    | bbox    | Coordinates of the selected box [lon_min,lat_min,lon_max,lat_max].|
+    | lon_min | Longiture Min.                                                    |
+    | lat_min | Latitude Min.                                                     |
+    | lon_max | Longitude Max.                                                    |
+    | lat_max | Latitude Max.                                                     |
+    | x       | Tile's x co-ordinate.                                             |
+    | y       | Tile's y co-ordinate.                                             |
+    | z       | Tile's z co-ordinate.                                             |
+    +---------+-------------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
 
     my $api_key   = 'Your_API_Key';
     my $wikimapia = WebService::Wikimapia->new({ api_key => $api_key });
-    my $results   = $wikimapia->box({ bbox => '37.617188,55.677586,37.70507,55.7271128' });
+    my $places    = $wikimapia->box({ bbox => '37.617188,55.677586,37.70507,55.7271128' });
 
-    print "Name: ", $results->[0]->name, "\n";
+    print "Place name: ", $places->[0]->name, "\n";
 
 =cut
 
@@ -671,29 +653,28 @@ sub box {
         $fields->{'y'} = 1;
         $fields->{'z'} = 1;
     }
-    validate($fields, $params);
 
     my $url      = $self->_url('box', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
 
-    my $results = [];
+    my $places = [];
     foreach my $content (@{$contents->{folder}}) {
-        push @$results, WebService::Wikimapia::Result->new($content);
+        push @$places, WebService::Wikimapia::Place->new($content);
     }
 
-    return $results;
+    return $places;
 }
 
-=head2 object()
+=head2 object() [DEPRECATED]
 
 Returns an object of type L<WebService::Wikimapia::Object>.
 
-    +---------+---------------------------------------------------------------------+
-    | Key     | Description                                                         |
-    +---------+---------------------------------------------------------------------+
-    | id      | Identifier of the object you want to get information about.         |
-    +---------+---------------------------------------------------------------------+
+    +---------+-----------------------------------------------------------------+
+    | Key     | Description                                                     |
+    +---------+-----------------------------------------------------------------+
+    | id      | Identifier of the object you want to get information about.     |
+    +---------+-----------------------------------------------------------------+
 
     use strict; use warnings;
     use WebService::Wikimapia;
@@ -710,10 +691,8 @@ sub object {
     my ($self, $id) = @_;
 
     print {*STDERR} "WARNING: Deprecated method object(), please refer the perldoc.\n";
-    my $fields = { 'id' => 1 };
-    my $params = { 'id' => $id };
-    validate($fields, $params);
-
+    my $fields   = { 'id' => 1 };
+    my $params   = { 'id' => $id };
     my $url      = $self->_url('object', $fields, $params);
     my $response = $self->get($url);
     my $contents = from_json($response->{content});
@@ -728,15 +707,21 @@ sub object {
 sub _url {
     my ($self, $function, $fields, $params) = @_;
 
+    validate($fields, $params);
+
     my $url = sprintf("%s?function=%s&key=%s&format=%s", $self->base_url, $function, $self->api_key, $self->format);
-    if ($self->disable && defined $self->disable) {
-        $url .= sprintf("disable=%s", $self->disable);
-    }
 
     if (defined $params && defined $fields) {
         foreach my $key (keys %$fields) {
             my $_key = "&$key=%" . $FIELDS->{$key}->{type};
             $url .= sprintf($_key, $params->{$key}) if defined $params->{$key};
+        }
+    }
+
+    foreach my $key (keys %$fields) {
+        if (!exists $params->{$key} && !$fields->{$key}) {
+            my $_key = "&$key=%" . $FIELDS->{$key}->{type};
+            $url .= sprintf($_key, $self->{$key});
         }
     }
 

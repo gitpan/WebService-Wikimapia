@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Place;
 
-$WebService::Wikimapia::Place::VERSION = '0.06';
+$WebService::Wikimapia::Place::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Place - Placeholder for 'place' of L<WebService::Wikimapi
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
@@ -24,6 +24,7 @@ use Moo;
 use namespace::clean;
 
 has 'id'                 => (is => 'ro');
+has 'name'               => (is => 'ro');
 has 'title'              => (is => 'ro');
 has 'language_id'        => (is => 'ro');
 has 'language_name'      => (is => 'ro');
@@ -156,6 +157,8 @@ sub BUILDARGS {
 =head1 METHODS
 
 =head2 id()
+
+=head2 name()
 
 =head2 title()
 

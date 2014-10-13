@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Street;
 
-$WebService::Wikimapia::Street::VERSION = '0.06';
+$WebService::Wikimapia::Street::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Street - Placeholder for 'street' of L<WebService::Wikima
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 

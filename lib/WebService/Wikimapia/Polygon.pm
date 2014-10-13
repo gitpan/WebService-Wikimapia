@@ -1,6 +1,6 @@
 package WebService::Wikimapia::Polygon;
 
-$WebService::Wikimapia::Polygon::VERSION = '0.06';
+$WebService::Wikimapia::Polygon::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::Polygon - Placeholder for 'polygon' of L<WebService::Wiki
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 

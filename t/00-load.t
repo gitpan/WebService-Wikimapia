@@ -1,14 +1,12 @@
 #!perl
 
-use Test::More tests => 21;
+use Test::More tests => 19;
 
 BEGIN {
     use_ok('WebService::Wikimapia')                       || print "Bail out!";
     use_ok('WebService::Wikimapia::Params')               || print "Bail out!";
     use_ok('WebService::Wikimapia::UserAgent')            || print "Bail out!";
     use_ok('WebService::Wikimapia::UserAgent::Exception') || print "Bail out!";
-    use_ok('WebService::Wikimapia::Result')               || print "Bail out!";
-    use_ok('WebService::Wikimapia::Response')             || print "Bail out!";
     use_ok('WebService::Wikimapia::Place')                || print "Bail out!";
     use_ok('WebService::Wikimapia::City')                 || print "Bail out!";
     use_ok('WebService::Wikimapia::Comment')              || print "Bail out!";

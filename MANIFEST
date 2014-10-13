@@ -6,8 +6,6 @@ Makefile.PL
 README
 lib/WebService/Wikimapia.pm
 lib/WebService/Wikimapia/Params.pm
-lib/WebService/Wikimapia/Result.pm
-lib/WebService/Wikimapia/Response.pm
 lib/WebService/Wikimapia/Place.pm
 lib/WebService/Wikimapia/City.pm
 lib/WebService/Wikimapia/Street.pm

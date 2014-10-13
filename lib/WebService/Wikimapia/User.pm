@@ -1,6 +1,6 @@
 package WebService::Wikimapia::User;
 
-$WebService::Wikimapia::User::VERSION = '0.06';
+$WebService::Wikimapia::User::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ WebService::Wikimapia::User - Placeholder for 'user' of L<WebService::Wikimapia>
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
